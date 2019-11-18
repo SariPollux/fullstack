@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = (props) => {
+const Header = (props) => <h1>{props.course.name}</h1>
+/*{
     console.log(props)
     return (
         <>
@@ -9,7 +10,7 @@ const Header = (props) => {
         </>
 
     )
-}
+}*/
 const Content = (props) => {
     console.log(props)
     return (
@@ -20,22 +21,24 @@ const Content = (props) => {
         </>
     )
 }
-const Total = (props) => {
+const Total = (props) => <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
+/*{
     console.log(props)
     return (
         <>
             <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
         </>
     )
-}
-const Part = (props) => {
+}*/
+const Part = (props) => <p>{props.part} {props.exercises}</p>
+/*{
     console.log(props)
     return (
         <>
             <p>{props.part} {props.exercises}</p> 
         </> 
     )
-}
+}*/
 
 const App = () => {
     const course = {
