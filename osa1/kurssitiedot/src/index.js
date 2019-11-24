@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Header = (props) => <h1>{props.course.name}</h1>
-/*{
-    console.log(props)
-    return (
-        <>
-            <h1>{props.course.name}</h1>
-        </>
 
-    )
-}*/
+
+const Header = (props) => <h1>{props.course.name}</h1>
+ 
+
 const Content = (props) => {
-    console.log(props)
     return (
         <>
             <Part part={props.course.parts[0].name} exercises={props.course.parts[0].exercises} />
@@ -22,23 +16,9 @@ const Content = (props) => {
     )
 }
 const Total = (props) => <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
-/*{
-    console.log(props)
-    return (
-        <>
-            <p>Number of exercises {props.course.parts[0].exercises + props.course.parts[1].exercises + props.course.parts[2].exercises}</p>
-        </>
-    )
-}*/
+
 const Part = (props) => <p>{props.part} {props.exercises}</p>
-/*{
-    console.log(props)
-    return (
-        <>
-            <p>{props.part} {props.exercises}</p> 
-        </> 
-    )
-}*/
+
 
 const App = () => {
     const course = {
@@ -68,9 +48,4 @@ const App = () => {
 }
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
+ReactDOM.render(<App />, document.getElementById('root'))
