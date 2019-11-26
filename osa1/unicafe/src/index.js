@@ -19,21 +19,28 @@ const Statistics = ({good, neutral, bad}) => {
    
        }  
    else {return (
-    <div>
+    <table>
+    <tbody>
    <Statistic text='good' value={good} />
    <Statistic text='neutral' value={neutral} />
    <Statistic text='bad' value={bad} />
    <Statistic text='sum' value={sum (good, neutral, bad)} />
    <Statistic text='avarage' value={avarage (good, neutral, bad)} />
    <Statistic text='positive' value={positive (good, neutral, bad) + ' %'} />
-  </div>
+   </tbody> 
+   </table> 
    )
    }
 }
 
-const Statistic = ({text, value}) => (
-    <div>{text} {value}</div>
-)
+const Statistic = ({text, value}) => {
+    return(
+    <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+    </tr>
+    )
+}
 
 const Button = ({ onClick, text}) => (
     <button onClick={onClick}>{text}</button>
