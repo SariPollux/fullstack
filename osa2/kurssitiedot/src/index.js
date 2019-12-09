@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom';
 
 
 
-const Part = ({course}) => {
-    return (
-       <div>
-           {course.parts.map(part => <p key={part.id}>{part.name} {part.exercises}</p>)}
-        </div>
-    )
-    
-}
+const Part = ({course}) => (
+    <div>
+        {course.parts.map(part => <p key={part.id}>{part.name} {part.exercises}</p>)}
+    </div>
+)
 
 const Content = ({course}) => (
        <div>
@@ -22,7 +19,7 @@ const Total = ({course}) => {
     const amount = course.parts.reduce((sum, parts) => sum+parts.exercises,0)
     return (
     <div>
-        <p>total of {amount} exercises</p>
+        <h4>total of {amount} exercises</h4>
     </div>
 )
 }
