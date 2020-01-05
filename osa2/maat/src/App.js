@@ -8,17 +8,13 @@ const Country = ({country}) => {
 
 const Info = (props) => {
     const {country} = props
-    /*const languageList= country.map(language=>{
-        return language.name
-    })
-    console.log(languageList);*/
     return (<div>
         <h1>{country.name}</h1>
         <p>capital {country.capital} <br /> 
         population {country.population}</p>
         <h3>languages</h3>
        <ul>
-            {country.languages.map(language=> (<li>{language.name}</li>))}
+            {country.languages.map(language=> (<li key={country.name}>{language.name}</li>))}
         </ul>
         <img src={country.flag} alt={'flag'} style={{ height: 100}}/>
         </div>)
