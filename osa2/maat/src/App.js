@@ -6,35 +6,50 @@ const Country = ({country}) => {
 }
 
 
-/*const Info = ({country}) => {
-    return (
+const Info = (props) => {
+    const {country} = props
+    /*const languageList= country.map(language=>{
+        return language.name
+    })
+    console.log(languageList);*/
+    return (<div>
         <h1>{country.name}</h1>
-        <div>capital {capital}</div>
-        <div>population {population}</div>
-        <h2>languages</h2>
-    )
-}*/
+        <p>capital {country.capital} <br /> 
+        population {country.population}</p>
+        <h3>languages</h3>
+       <ul>
+            {country.languages.map(language=> (<li>{language.name}</li>))}
+        </ul>
+        <img src={country.flag} alt={'flag'} style={{ height: 100}}/>
+        </div>)
+ 
+}
 
 
 const CountryList = (props) => {
         const {listCountry} = props
-        const pituus = listCountry.map(country=>{
+        const countryCount= listCountry.map(country=>{
             return country.name
         })
-        console.log(pituus);
-        if (pituus.length > 10) {
+        console.log(countryCount);
+        if (countryCount.length === 1 ) {
+            return (listCountry.map(country => {
+                return <Info key={country.name} country={country} />
+        }))}
+        else if (countryCount.length > 10) {
             return (<div>Too many matches, specify another filter</div>)
             
         } else {
             return (listCountry.map(country => {
                 return <Country key={country.name} country={country} />
         }))}
+    
     }
             
     
 
 
-const App = (props) => {
+const App = () => {
 
     const [countries, setCountries] = useState([])
     const [showFiltered, setShowFiltered] = useState('')
@@ -70,8 +85,8 @@ const App = (props) => {
                         />
         </div>
         </form>
-        <div><CountryList listCountry={listCountry}
-                         /></div>
+        <div><CountryList listCountry={listCountry}/></div>
+        
      </div>
     )
 }
