@@ -5,19 +5,40 @@ const Country = ({country}) => {
     return (<div>{country.name}</div>)
 }
 
+const Language = ({language}) => {
+    return (<li>{language.name}</li>)
+}
 
-const Info = (props) => {
-    const {country} = props
+const Info = ({country}) => {
+    const rows = () =>
+    country.languages.map(language=> 
+    <Language 
+    key={language.name}
+    language={language}
+    />
+    )
+
     return (<div>
         <h1>{country.name}</h1>
         <p>capital {country.capital} <br /> 
         population {country.population}</p>
         <h3>languages</h3>
        <ul>
-            {country.languages.map(language=> (<li key={country.name}>{language.name}</li>))}
+            {rows()}
         </ul>
         <img src={country.flag} alt={'flag'} style={{ height: 100}}/>
         </div>)
+
+/*return (<div>
+    <h1>{country.name}</h1>
+    <p>capital {country.capital} <br /> 
+    population {country.population}</p>
+    <h3>languages</h3>
+   <ul>
+        {country.languages.map(language=> (<li key={language.name}>{language.name}</li>))}
+    </ul>
+    <img src={country.flag} alt={'flag'} style={{ height: 100}}/>
+    </div>)*/
  
 }
 
