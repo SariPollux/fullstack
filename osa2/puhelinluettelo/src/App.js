@@ -61,7 +61,18 @@ const App = () => {
   }
   } 
  
+const removePerson = (id) => {
+    if (window.confirm(`Delete ${id} ?`)) {
+     personService
+     .remove(id)
+     .then(returnedPerson =>{
+      setPersons(persons.concat(returnedPerson))
+    })
+    }
+  }
+  console.log(removePerson)
 
+  
   const namesToShow = persons.filter(person => {
     return person.name.toLowerCase().includes(showFiltered.toLowerCase());
   })
