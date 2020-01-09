@@ -61,22 +61,24 @@ const App = () => {
   }
   } 
  
-const removePerson = (id) => {
-    if (window.confirm(`Delete ${id} ?`)) {
-     personService
-     .remove(id)
-     .then(returnedPerson =>{
-      setPersons(persons.concat(returnedPerson))
-    })
-    }
-  }
-  console.log(removePerson)
 
-  
+
+
   const namesToShow = persons.filter(person => {
     return person.name.toLowerCase().includes(showFiltered.toLowerCase());
   })
 
+ 
+  const removePerson = id => {
+     if (window.confirm(`Delete ${id} ?`)){
+      personService
+      .remove(id)
+      .then(returnedPerson =>{
+        setPersons(persons.concat(returnedPerson))
+      })
+    console.log(`${id} needs to be removed`)}
+  }
+  console.log(removePerson)    
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
@@ -89,6 +91,7 @@ const removePerson = (id) => {
     setShowFiltered(event.target.value)
   }
 
+  
  
   return (
     <div>
@@ -106,7 +109,9 @@ const removePerson = (id) => {
                   />
        
       <h3>Numbers</h3>
-      <PersonsList namesToShow={namesToShow} />
+      <PersonsList namesToShow={namesToShow}
+                   removePerson={removePerson}
+                   />
     </div> )
 
 }
