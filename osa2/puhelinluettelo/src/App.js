@@ -45,6 +45,8 @@ const App = () => {
       .create(nameObject)
         .then(returnedPerson =>{
           setPersons(persons.concat(returnedPerson))
+          setNewName('')
+          setNewNumber('')
         })
       /*.then(response => {
         setPersons(persons.concat(response.data))
@@ -60,25 +62,24 @@ const App = () => {
     })*/
   }
   } 
- 
+  
 
-
-
-  const namesToShow = persons.filter(person => {
-    return person.name.toLowerCase().includes(showFiltered.toLowerCase());
-  })
-
- 
-  const removePerson = id => {
-     if (window.confirm(`Delete ${id} ?`)){
+  const removePerson = (person) => {
+     if (window.confirm(`Delete ${person.name} ?`)){
+      
       personService
-      .remove(id)
-      .then(returnedPerson =>{
-        setPersons(persons.concat(returnedPerson))
+      .remove(person.id)
+      .then(response =>{
+        setPersons(response.data)
       })
-    console.log(`${id} needs to be removed`)}
+    }
+    console.log(`${person.id} needs to be removed`)
   }
   console.log(removePerson)    
+
+  const namesToShow = persons.filter(person => {
+    return person.name.toLowerCase().includes(showFiltered.toLowerCase())
+  })
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
