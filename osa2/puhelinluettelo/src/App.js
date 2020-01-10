@@ -4,13 +4,26 @@ import PersonsList from './components/PersonsList'
 import Filter from './components/Filter'
 import PersonForm from './components/PersonForm'
 import personService from './services/persons'
+import './index.css'
 
+
+const Notification = ({message}) => {
+  if (message === null) {
+    return null
+  }
+  return (
+    <div className="info">
+      {message}
+    </div>
+  )
+}
 
 const App = () => {
   const [ persons, setPersons] = useState([]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ showFiltered, setShowFiltered ] = useState ('')
+  const [infoMessage, setInfoMessage] = useState(null)
 
   useEffect(() => { 
     personService
@@ -45,6 +58,12 @@ const App = () => {
       })
       setNewName('')
       setNewNumber('')
+      setInfoMessage(
+        `Changed ${newName}'s number to ${newNumber}`
+      )
+      setTimeout(() => {
+        setInfoMessage(null)
+      }, 5000)
     } else { 
       const nameObject = {
       name: newName,
@@ -56,6 +75,12 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
+          setInfoMessage(
+            `Added ${newName}`
+          )
+          setTimeout(() => {
+            setInfoMessage(null)
+          }, 5000)
         })
 
       
@@ -83,6 +108,12 @@ const App = () => {
       .then(response =>{
         console.log(response)
         setPersons(persons.filter(p => p.id !==person.id))
+        setInfoMessage(
+          `Removed ${person.name}`
+        )
+        setTimeout(() => {
+          setInfoMessage(null)
+        }, 5000)
       })
     }
     console.log(`${person.id} needs to be removed`)
@@ -109,6 +140,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+
+      <Notification message={infoMessage} />
+
       <Filter value={showFiltered}
               onChange={handleFilter}
       />
