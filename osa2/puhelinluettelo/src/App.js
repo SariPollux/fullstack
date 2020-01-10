@@ -65,12 +65,13 @@ const App = () => {
   
 
   const removePerson = (person) => {
-     if (window.confirm(`Delete ${person.name} ?`)){
+      if (window.confirm(`Delete ${person.name} ?`)){
       
       personService
-      .remove(person.id)
+      .remove(person.id) 
       .then(response =>{
-        setPersons(response.data)
+        console.log(response)
+        setPersons(persons.filter(p => p.id !==person.id))
       })
     }
     console.log(`${person.id} needs to be removed`)
